@@ -127,7 +127,7 @@ public class HttpTester {
         HttpEntity entity = response.getEntity();
         LOG.info("\t\tContent-Type: {}", entity.getContentType());
         LOG.info("\t\tContent-Length: {}", entity.getContentLength());
-        LOG.info("\t\tContent: {}", EntityUtils.toString(entity));
+        LOG.info("\t\tContent: '{}'", EntityUtils.toString(entity));
     }
 
 
