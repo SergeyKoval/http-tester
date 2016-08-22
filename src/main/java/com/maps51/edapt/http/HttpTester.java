@@ -58,8 +58,8 @@ public class HttpTester {
     private static final String RIGHT_CURLY_BRACKET = "}";
     private static final String UTF_8 = "UTF-8";
 
-    public static Registry<ConnectionSocketFactory> prepareSocketFactoryRegistry() {
-        RegistryBuilder<ConnectionSocketFactory> registryBuilder = RegistryBuilder.<ConnectionSocketFactory>create();
+    private static Registry<ConnectionSocketFactory> prepareSocketFactoryRegistry() {
+        RegistryBuilder<ConnectionSocketFactory> registryBuilder = RegistryBuilder.create();
         registryBuilder.register(HTTP, PlainConnectionSocketFactory.getSocketFactory());
         registryBuilder.register(HTTPS, prepareTrustingSocketFactory());
         return registryBuilder.build();
