@@ -103,9 +103,9 @@ public class HttpTester {
         LOG.info("Enter passcode or leave empty to use config's one:");
         String passcode = System.console().readLine();
         if (StringUtils.isNotBlank(passcode)) {
-            LOG.info("Entered passcode: {}", passcode);
             properties.setProperty(PASSCODE_KEY, passcode);
         }
+        LOG.info("Using passcode: {}", properties.getProperty(PASSCODE_KEY));
     }
 
     private static HttpEntity buildEntity(Properties properties) throws UnsupportedEncodingException {
