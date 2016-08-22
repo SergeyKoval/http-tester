@@ -101,9 +101,10 @@ public class HttpTester {
 
     private static void processPasscode(Properties properties) {
         LOG.info("Enter passcode or leave empty to use config's one:");
-        String password = System.console().readLine();
-        if (StringUtils.isNotBlank(password)) {
-            properties.setProperty(PASSCODE_KEY, password);
+        String passcode = System.console().readLine();
+        if (StringUtils.isNotBlank(passcode)) {
+            LOG.info("Entered passcode: {}", passcode);
+            properties.setProperty(PASSCODE_KEY, passcode);
         }
     }
 
