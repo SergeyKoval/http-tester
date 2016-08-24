@@ -58,8 +58,8 @@ public class HttpTester {
     private static final String RIGHT_CURLY_BRACKET = "}";
     private static final String UTF_8 = "UTF-8";
 
-    public static Registry<ConnectionSocketFactory> prepareSocketFactoryRegistry() {
-        RegistryBuilder<ConnectionSocketFactory> registryBuilder = RegistryBuilder.<ConnectionSocketFactory>create();
+    private static Registry<ConnectionSocketFactory> prepareSocketFactoryRegistry() {
+        RegistryBuilder<ConnectionSocketFactory> registryBuilder = RegistryBuilder.create();
         registryBuilder.register(HTTP, PlainConnectionSocketFactory.getSocketFactory());
         registryBuilder.register(HTTPS, prepareTrustingSocketFactory());
         return registryBuilder.build();
@@ -101,10 +101,11 @@ public class HttpTester {
 
     private static void processPasscode(Properties properties) {
         LOG.info("Enter passcode or leave empty to use config's one:");
-        String password = System.console().readLine();
-        if (StringUtils.isNotBlank(password)) {
-            properties.setProperty(PASSCODE_KEY, password);
+        String passcode = System.console().readLine();
+        if (StringUtils.isNotBlank(passcode)) {
+            properties.setProperty(PASSCODE_KEY, passcode);
         }
+        LOG.info("Using passcode: {}", properties.getProperty(PASSCODE_KEY));
     }
 
     private static HttpEntity buildEntity(Properties properties) throws UnsupportedEncodingException {
@@ -127,7 +128,7 @@ public class HttpTester {
         HttpEntity entity = response.getEntity();
         LOG.info("\t\tContent-Type: {}", entity.getContentType());
         LOG.info("\t\tContent-Length: {}", entity.getContentLength());
-        LOG.info("\t\tContent: {}", EntityUtils.toString(entity));
+        LOG.info("\t\tContent: '{}'", EntityUtils.toString(entity));
     }
 
 
